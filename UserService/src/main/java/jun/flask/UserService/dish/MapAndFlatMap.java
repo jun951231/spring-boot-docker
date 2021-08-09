@@ -2,7 +2,7 @@ package jun.flask.UserService.dish;
 
 import reactor.core.publisher.Flux;
 
-public class MapAndFlatMap {
+public final class MapAndFlatMap {
     public Flux<Integer> mapMethod(){
         return Flux.just("a", "bc", "def", "wxyz").map(str -> str.length());
         //문자열을 Integer 값으로 1-1 변환

@@ -14,27 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.result.view.Rendering;
 import reactor.core.publisher.Mono;
 
+
 @RestController @RequiredArgsConstructor
 public class ItemController {
-
-    private ItemRepository itemRepository;
-    private CartRepository cartRepository;
-
-    public ItemController(ItemRepository itemRepository,
-                          CartRepository cartRepository){
-        this.itemRepository = itemRepository;
-        this.cartRepository = cartRepository;
-    }
+    private final ItemRepository itemRepository;
+    private final CartRepository cartRepository;
 
     @GetMapping
     Mono<Rendering> home(){
         return Mono.just(Rendering.view("home.html")
-                .modelAttribute("items", //
-                        this.itemRepository.findAll())
-                .modelAttribute("cart", //
-                        this.cartRepository.findById("My Cart")
-                .defaultIfEmpty(new Cart("My Cart")))
-                .build());
+                .modelAttribute("items", this.itemRepository.findAll())
+                .modelAttribute("cart", this.cartRepository.findById("My Cart")
+                .defaultIfEmpty(new Cart("My Cart"))).build());
     }
     //87p
     @PostMapping("/add/{id}")

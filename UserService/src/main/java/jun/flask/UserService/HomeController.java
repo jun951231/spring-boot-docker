@@ -10,6 +10,8 @@ import java.util.Date;
 public class HomeController {
     @GetMapping("/")
     public String home(){
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
     }
+
+
 }
